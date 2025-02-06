@@ -9,6 +9,7 @@ export function useAuth(){
 }
 
 
+
 export function AuthContextProvider({children}) {
     const [currentUser,setCurrentUser]=useState(null);
     const [userLoggedIn,setUserLoggedIn]=useState(false);

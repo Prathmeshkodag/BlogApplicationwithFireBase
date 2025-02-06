@@ -1,70 +1,43 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+1. App.js: Routes for login, signup, home, and view blog. Includes Header for navigation.
 
-In the project directory, you can run:
+2. auth.jsx: Contains functions for user registration (doCreateUserWithEmailAndPassword), login (loginWithEmailAndPassword, loginWithGoogle), and logout (logOut).
 
-### `npm start`
+3. login.jsx: Redirects to home if logged in, allows email/password and Google login, shows error messages on failure.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. signup.jsx: Redirects to home if logged in, checks password match, displays registration form, includes a login link.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+5. header.jsx: Displays login/register links if not logged in, shows welcome message and logout button if logged in.
 
-### `npm test`
+6. home.jsx: Split layout (40% for Add Blog, 60% for Blog List). Displays a blog form and list.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+7. addBlogForm.jsx: Displays a form for adding/editing blogs with title, description (WYSIWYG), and image upload. Handles submission and updates.
 
-### `npm run build`
+8. blogList.jsx: Fetches and displays blogs. Includes actions for view, edit, delete, pagination, and a modal for editing.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+9. ViewBlog.jsx: Displays full blog content. Handles blog retrieval and renders with inline styles. Includes a back button.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+10. blogSlice.jsx: Redux slice for managing blogs, includes async actions (fetch, update), and reducers to manage state (e.g., currentBlog).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+11. store.jsx: Configures Redux store with blogReducer, making blog data available across the app.
 
-### `npm run eject`
+12. AuthContext.jsx: Provides authentication state (currentUser, userLoggedIn, loading) via context.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+13. useAuth Hook: Custom hook for accessing auth state in components.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+14. AuthContextProvider: Manages auth state, subscribes to Firebase’s onAuthStateChanged, and controls loading state.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+15. Context Provider: Passes auth values to app, ensures children render only after auth state is initialized.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+16. Firebase Integration: Handles Firebase Authentication for login and registration.
 
-## Learn More
+17. Error Handling: Displays error messages for login and signup failures.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+18. Conditional Routing: Protects routes by checking login state before allowing access.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+19. State Management: Uses Redux for blog state and AuthContext for authentication.
 
-### Code Splitting
+20. Responsive UI: Bootstrap and inline styles for layout and responsiveness.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This setup provides a structured app with authentication, blog management, and responsive UI components.
