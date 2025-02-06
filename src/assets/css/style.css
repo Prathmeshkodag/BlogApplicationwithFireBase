@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+    .home{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .addblog{
+        width: 100% !important;
+    }
+    .bloglist{
+        width: 100% !important;
+    }
+    .backbutton{
+        position: absolute !important;
+        top: 100px !important;
+    }
+}
