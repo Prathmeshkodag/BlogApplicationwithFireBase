@@ -5,6 +5,7 @@ import { db } from "../../firebase/firebase";
 import { doc, deleteDoc } from "firebase/firestore";
 import AddBlogForm from "../home/addBlogfrom";
 import { useNavigate } from "react-router-dom";
+import { convert } from "html-to-text";
 
 export default function Bloglist() {
   const dispatch = useDispatch();
@@ -77,53 +78,61 @@ export default function Bloglist() {
                               </tr>
                             </thead>
                             <tbody>
-                              {currentBlogs.map((blog, index) => (
-                                <tr key={blog.id}>
-                                  <td>{index + 1 + (currentPage - 1) * blogsPerPage}</td>
-                                  <td>{blog.title}</td>
-                                  <td>
-                                    <div
-                                      dangerouslySetInnerHTML={{ __html: blog.description }}
-                                      className="blog-description"
-                                    />
-                                  </td>
-                                  <td>
-                                    {blog.image ? (
-                                      <img src={blog.image} alt="Blog" style={{ width: "100px" }} />
-                                    ) : (
-                                      "No Image"
-                                    )}
-                                  </td>
-                                  <td>
-                                    <div className="d-flex align-items-center gap-2 justify-content-center h-100">
-                                      <button
-                                        type="button"
-                                        className="btn btn-outline-primary btn-sm"
-                                        onClick={() => viewItem(blog.id)}
-                                      >
-                                        View
-                                      </button>
-                                      <button
-                                        type="button"
-                                        className="btn btn-danger btn-sm"
-                                        onClick={() => deleteItem(blog.id)}
-                                      >
-                                        Delete
-                                      </button>
-                                      <button
-                                        type="button"
-                                        className="btn btn-warning btn-sm"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
-                                        onClick={() => setEditingBlog(blog)}
-                                      >
-                                        Edit
-                                      </button>
-                                    </div>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
+  {currentBlogs.map((blog, index) => {
+    const truncatedDescription =
+      blog.description && blog.description.length > 100
+        ? convert(blog.description, { wordwrap: false }).slice(0, 100) + "..."
+        : convert(blog.description || "", { wordwrap: false });
+
+    return (
+      <tr key={blog.id}>
+        <td>{index + 1 + (currentPage - 1) * blogsPerPage}</td>
+        <td>{blog.title}</td>
+        <td>
+          <div
+            dangerouslySetInnerHTML={{ __html: truncatedDescription }}
+            className="blog-description"
+          />
+        </td>
+        <td>
+          {blog.image ? (
+            <img src={blog.image} alt="Blog" style={{ width: "100px" }} />
+          ) : (
+            "No Image"
+          )}
+        </td>
+        <td>
+          <div className="d-flex align-items-center gap-2 justify-content-center h-100">
+            <button
+              type="button"
+              className="btn btn-outline-primary btn-sm"
+              onClick={() => viewItem(blog.id)}
+            >
+              View
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger btn-sm"
+              onClick={() => deleteItem(blog.id)}
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              className="btn btn-warning btn-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              onClick={() => setEditingBlog(blog)}
+            >
+              Edit
+            </button>
+          </div>
+        </td>
+      </tr>
+    );
+  })}
+</tbody>
+
                           </table>
                         )}
                         <nav aria-label="Page navigation example">

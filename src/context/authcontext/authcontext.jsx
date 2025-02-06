@@ -36,7 +36,7 @@ export function AuthContextProvider({children}) {
         userLoggedIn,
         loading,    
     }
-    console.log(userLoggedIn)
+    
     return (
         <AuthContext.Provider value={{value}}>
             {!loading && children}
