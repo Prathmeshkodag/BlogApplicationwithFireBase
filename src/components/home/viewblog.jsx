@@ -15,7 +15,7 @@ export default function ViewBlog() {
             <div>
                 <Link to="/home"  style={{ position: 'absolute', top: '20px', left: '20px' }} className="btn btn-primary   backbutton">Go Back</Link>
             </div>
-            <div className="card" style={{ width: '40rem', padding: '20px', borderRadius: '20px', boxShadow: '0 0 10px rgba(0,0,0,0.1)',top:"100px" }}>
+            <div className="card1" style={{ width: '40rem', padding: '20px', borderRadius: '20px', boxShadow: '0 0 10px rgba(0,0,0,0.1)',backgroundColor:'white',position:'relative'}}>
                 <h5>Image</h5>
                 <br/>
                 {currentBlog.image && <img className="card-img-top" src={currentBlog.image} alt="Card image cap" />}
