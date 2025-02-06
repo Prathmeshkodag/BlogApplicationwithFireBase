@@ -2,13 +2,13 @@
 import { useRoutes } from 'react-router-dom';
 import Login from './components/authontication/login/login';
 import Signup from './components/authontication/singup/singup';
-import Home from './components/home/home';
+import Home from './components/blogtable/home';
 import { AuthContextProvider, useAuth } from './context/authcontext/authcontext';
 import Header from './components/header/header';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import './assets/css/style.css';
-import ViewBlog from './components/home/viewblog';
+import ViewBlog from './components/blogtable/viewblog';
 
 function App() {
   const {value}=useAuth();

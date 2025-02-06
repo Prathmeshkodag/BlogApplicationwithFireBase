@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs, fetchBlogById } from "../../redux/blogSlice/blogSlice";
 import { db } from "../../firebase/firebase";
 import { doc, deleteDoc } from "firebase/firestore";
-import AddBlogForm from "../home/addBlogfrom";
+import AddBlogForm from "./addBlogfrom";
 import { useNavigate } from "react-router-dom";
 import { convert } from "html-to-text";
 
@@ -20,8 +20,7 @@ export default function Bloglist() {
     dispatch(fetchBlogs());
   }, [dispatch]);
 
-  // Handle deleting a blog
-  const deleteItem = async (id) => {
+    const deleteItem = async (id) => {
     try {
       await deleteDoc(doc(db, "blogs", id));
       dispatch(fetchBlogs());
@@ -30,7 +29,7 @@ export default function Bloglist() {
     }
   };
 
-  // Handle viewing a blog
+  
   const viewItem = (id) => {
     dispatch(fetchBlogById(id))
       .then((action) => {
